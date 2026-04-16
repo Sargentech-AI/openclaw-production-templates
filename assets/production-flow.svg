@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="440" viewBox="0 0 980 440">
+<rect width="980" height="440" fill="#0f172a"/>
+<text x="40" y="50" fill="#fff" font-size="28" font-family="Arial" font-weight="700">OpenClaw Production Templates — End-to-End Flow</text>
+<g font-family="Arial" font-size="16">
+<rect x="50" y="120" width="160" height="90" rx="12" fill="#1d4ed8"/><text x="83" y="165" fill="#fff">Inbound trigger</text><text x="72" y="190" fill="#bfdbfe">Telegram / cron / task</text>
+<rect x="240" y="120" width="160" height="90" rx="12" fill="#0f766e"/><text x="274" y="165" fill="#fff">Router</text><text x="255" y="190" fill="#ccfbf1">profile + model selection</text>
+<rect x="430" y="120" width="160" height="90" rx="12" fill="#7c3aed"/><text x="458" y="165" fill="#fff">Worker run</text><text x="448" y="190" fill="#ede9fe">research / writing / code</text>
+<rect x="620" y="120" width="160" height="90" rx="12" fill="#b45309"/><text x="646" y="165" fill="#fff">Quality gate</text><text x="634" y="190" fill="#fed7aa">approve / rework</text>
+<rect x="810" y="120" width="120" height="90" rx="12" fill="#15803d"/><text x="840" y="165" fill="#fff">Delivery</text><text x="835" y="190" fill="#dcfce7">final send</text>
+<line x1="210" y1="165" x2="240" y2="165" stroke="#94a3b8" stroke-width="3"/><line x1="400" y1="165" x2="430" y2="165" stroke="#94a3b8" stroke-width="3"/><line x1="590" y1="165" x2="620" y2="165" stroke="#94a3b8" stroke-width="3"/><line x1="780" y1="165" x2="810" y2="165" stroke="#94a3b8" stroke-width="3"/>
+<rect x="250" y="280" width="220" height="90" rx="12" fill="#111827" stroke="#334155"/><text x="300" y="322" fill="#fff">Monitoring hooks</text><text x="287" y="347" fill="#94a3b8">drift detector · provider health</text>
+<rect x="520" y="280" width="220" height="90" rx="12" fill="#111827" stroke="#334155"/><text x="564" y="322" fill="#fff">Auditability</text><text x="539" y="347" fill="#94a3b8">logs · review state · fallback chain</text>
+</g></svg>

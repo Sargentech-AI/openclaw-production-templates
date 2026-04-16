@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+<rect width="900" height="520" fill="#0b1020"/>
+<rect x="140" y="70" width="620" height="360" rx="18" fill="#111827" stroke="#334155"/>
+<text x="180" y="120" fill="#fff" font-size="28" font-family="Arial" font-weight="700">Quality Review Card</text>
+<text x="180" y="160" fill="#cbd5e1" font-size="18" font-family="Arial">Task: Draft weekly market brief for AU telecom buyers</text>
+<text x="180" y="195" fill="#cbd5e1" font-size="18" font-family="Arial">Model: local research + Sonnet synthesis</text>
+<text x="180" y="230" fill="#cbd5e1" font-size="18" font-family="Arial">Checks: facts grounded · tone reviewed · external send blocked pending approval</text>
+<rect x="190" y="300" width="180" height="52" rx="10" fill="#16a34a"/>
+<text x="245" y="333" fill="#fff" font-size="22" font-family="Arial" font-weight="700">Approve</text>
+<rect x="400" y="300" width="180" height="52" rx="10" fill="#dc2626"/>
+<text x="460" y="333" fill="#fff" font-size="22" font-family="Arial" font-weight="700">Rework</text>
+<rect x="610" y="300" width="110" height="52" rx="10" fill="#1d4ed8"/>
+<text x="638" y="333" fill="#fff" font-size="22" font-family="Arial" font-weight="700">View</text>
+</svg>
