@@ -1,0 +1,21 @@
+{
+  "name": "pipeline-watchdog",
+  "enabled": true,
+  "schedule": {
+    "kind": "interval",
+    "every": "3600s"
+  },
+  "sessionTarget": "isolated",
+  "wakeMode": "now",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "Check the task pipeline for stuck or stale items.\n\n1. Get current task status:\n   exec: curl -s http://127.0.0.1:3001/api/tasks -H 'x-api-key: YOUR_MC_API_KEY' | python3 -c \"\nimport sys, json\nfrom collections import Counter\nd = json.load(sys.stdin)\ntasks = d if isinstance(d, list) else d.get('tasks', [])\nprint(Counter(t.get('status','?') for t in tasks))\nstale = [t for t in tasks if t.get('status') in ('inbox','assigned') and t.get('id',0) > 0]\nfor t in stale[:5]:\n    print(f'  #{t[\\\"id\\\"]} [{t.get(\\\"status\\\")}] {t.get(\\\"assigned_to\\\",\\\"unassigned\\\")}: {t.get(\\\"title\\\",\\\"?\\\")[:60]}')\n\"\n\nIf no stale tasks: respond with just 'Pipeline healthy'\nIf stale tasks found: list them with recommended action.\n\nDo NOT use the message tool.",
+    "model": "ollama/qwen2.5:14b-instruct",
+    "timeoutSeconds": 60,
+    "toolsAllow": ["exec", "read"]
+  },
+  "delivery": {
+    "mode": "none"
+  },
+  "_comment": "Silent watchdog. Change delivery.mode to 'announce' for Telegram alerts when tasks are stuck. Replace YOUR_MC_API_KEY with your Mission Control API key."
+}

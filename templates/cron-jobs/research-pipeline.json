@@ -1,0 +1,25 @@
+{
+  "name": "afternoon-research",
+  "enabled": true,
+  "schedule": {
+    "kind": "cron",
+    "expr": "0 14 * * 1-5",
+    "tz": "Australia/Brisbane"
+  },
+  "sessionTarget": "isolated",
+  "wakeMode": "now",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "You are a research agent. Today's topic rotation:\n- Monday: Industry trends\n- Tuesday: Competitor analysis\n- Wednesday: Technology deep-dive\n- Thursday: Market intelligence\n- Friday: Weekly synthesis\n\n1. Check what day it is: exec: date '+%A'\n2. Research the assigned topic using web_search and web_fetch\n3. Write a structured report: Executive Summary, Key Findings (3-5), Implications, Action Items\n4. Save to workspace: exec: cat > /path/to/brain/docs/autoresearch/$(date +%Y-%m-%d)-topic.md << 'EOF'\n[your report]\nEOF\n\nKeep reports under 1000 words. Lead with what's actionable.\n\nDo NOT use the message tool.",
+    "model": "anthropic/claude-sonnet-4-6",
+    "timeoutSeconds": 180,
+    "toolsAllow": ["exec", "read", "write", "web_search", "web_fetch"]
+  },
+  "delivery": {
+    "mode": "announce",
+    "channel": "telegram",
+    "to": "telegram:YOUR_CHAT_ID",
+    "bestEffort": true
+  },
+  "_comment": "Uses Claude Sonnet for research quality. Switch to a local model to reduce costs (quality tradeoff)."
+}

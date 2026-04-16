@@ -1,0 +1,25 @@
+{
+  "name": "morning-briefing",
+  "enabled": true,
+  "schedule": {
+    "kind": "cron",
+    "expr": "30 5 * * *",
+    "tz": "Australia/Brisbane"
+  },
+  "sessionTarget": "isolated",
+  "wakeMode": "now",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "Generate a morning briefing. Include:\n1. Top 3 AI/tech news stories (web_search)\n2. Local weather forecast\n3. Calendar summary for today\n4. Open tasks needing attention\n\nKeep it under 500 words. Lead with what matters most.\n\nDo NOT use the message tool. Just output the briefing as your response.",
+    "model": "ollama/qwen2.5:14b-instruct",
+    "timeoutSeconds": 120,
+    "toolsAllow": ["exec", "read", "web_search", "web_fetch"]
+  },
+  "delivery": {
+    "mode": "announce",
+    "channel": "telegram",
+    "to": "telegram:YOUR_CHAT_ID",
+    "bestEffort": true
+  },
+  "_comment": "Replace YOUR_CHAT_ID with your Telegram chat ID. Get it by messaging @userinfobot on Telegram."
+}

@@ -1,0 +1,21 @@
+{
+  "name": "health-monitor",
+  "enabled": true,
+  "schedule": {
+    "kind": "interval",
+    "every": "300s"
+  },
+  "sessionTarget": "isolated",
+  "wakeMode": "now",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "Run a quick health check:\n\n1. Gateway status:\n   exec: openclaw gateway status 2>&1 | head -5\n\n2. Ollama status (if using local models):\n   exec: curl -s http://localhost:11434/api/tags 2>/dev/null | python3 -c \"import sys,json; d=json.load(sys.stdin); print(f'Models loaded: {len(d.get(\\\"models\\\",[])))}')\"\n\n3. Recent cron errors (last hour):\n   exec: find /tmp/openclaw -name '*.log' -newer /tmp/health-marker 2>/dev/null | head -3\n\nIf everything is healthy, respond with just: ✅ All systems operational\n\nIf something is wrong, describe the issue clearly.\n\nDo NOT use the message tool.",
+    "model": "ollama/qwen2.5:7b-instruct",
+    "timeoutSeconds": 60,
+    "toolsAllow": ["exec", "read"]
+  },
+  "delivery": {
+    "mode": "none"
+  },
+  "_comment": "Silent health check. Set delivery.mode to 'announce' if you want Telegram alerts on failures. Uses smallest local model to minimize resource usage."
+}

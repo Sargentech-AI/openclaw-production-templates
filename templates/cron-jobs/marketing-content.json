@@ -1,0 +1,25 @@
+{
+  "name": "daily-marketing-content",
+  "enabled": true,
+  "schedule": {
+    "kind": "cron",
+    "expr": "30 6 * * 1-5",
+    "tz": "Australia/Brisbane"
+  },
+  "sessionTarget": "isolated",
+  "wakeMode": "now",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "Draft today's social media content for approval.\n\nIMPORTANT: Do NOT use the message tool. Just output the formatted content.\n\n1. Check the day: exec: date '+%A %Y-%m-%d'\n\n2. Weekly calendar:\n   - MON: Educational thread (5-7 tweets)\n   - TUE: 2-3 tweets + 1 LinkedIn post\n   - WED: 2-3 tweets (build-in-public, real numbers)\n   - THU: 2-3 tweets + LinkedIn personal + LinkedIn company page\n   - FRI: 2-3 tweets + weekly roundup\n\n3. Check recent posts to avoid repeats:\n   exec: tail -5 /path/to/memory/twitter-posts.jsonl 2>/dev/null || echo 'no recent posts'\n\n4. Format as:\n\n📊 Marketing Brief — [Day, Date]\n\n🐦 X Posts:\n1. [time] \"tweet text\" [chars/280]\n2. [time] \"tweet text\" [chars/280]\n\n💼 LinkedIn (if applicable):\n[post text]\n\nRules:\n- Max 280 chars per tweet (count carefully)\n- Max 2 hashtags per tweet\n- Lead with specific numbers or results\n- No hedge words, no corporate speak\n- All content is DRAFT — human approves before posting",
+    "model": "anthropic/claude-sonnet-4-6",
+    "timeoutSeconds": 180,
+    "toolsAllow": ["exec", "read", "web_search", "web_fetch"]
+  },
+  "delivery": {
+    "mode": "announce",
+    "channel": "telegram",
+    "to": "telegram:YOUR_CHAT_ID",
+    "bestEffort": true
+  },
+  "_comment": "Weekdays only. Human reviews and approves all content before posting. Uses Sonnet for writing quality."
+}
